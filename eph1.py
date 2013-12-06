@@ -66,7 +66,7 @@ def stamp_to_secs(stamp):
 
 
 
-f = open('/Users/qmcimedia/strict/timesnew_sorted', 'r')
+f = open('./timesnew_sorted', 'r')
 
 
 
@@ -91,20 +91,19 @@ lowestval = max_conn
 
 while True:
 
-    if mainclock == nextval:
-        while mainclock == nextval:
-            #print 'creating new instance'
-            make_req(thissize)
-            thisone = f.readline().replace('\n', '')
+    while mainclock == nextval:
+        #print 'creating new instance'
+        make_req(thissize)
+        thisone = f.readline().replace('\n', '')
 
-            if '#' in thistime.strip():
-                print 'Made it through without breakage'
-                print 'lowests', lowestval, lowesttime
-                exit()
+        if '#' in thistime.strip():
+            print 'Made it through without breakage'
+            print 'lowests', lowestval, lowesttime
+            exit()
 
 
-            thistime, thissize = thisone.split(' ')
-            nextval = stamp_to_secs(thistime)
+        thistime, thissize = thisone.split(' ')
+        nextval = stamp_to_secs(thistime)
 
     advance_time()
 
